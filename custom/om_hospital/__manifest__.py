@@ -12,11 +12,12 @@
     'maintainer': 'vancouver299',
     'website': 'https://github.com/vancouver29',
     # any module necessary for this one to work correctly
-    'depends': [],
+    'depends': ['sale'],
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/patient.xml'
+        'views/patient.xml',
+        'views/sale.xml'
     ],
     # only loaded in demonstration mode
     'demo': [],
