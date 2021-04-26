@@ -785,6 +785,9 @@ Reason(s) of this behavior could be:
             'signed_on': False,
         })
 
+    from odoo.addons.base.models.res_users import check_identity
+
+    @check_identity
     def action_cancel(self):
         cancel_warning = self._show_cancel_wizard()
         if cancel_warning:
