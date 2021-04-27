@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <odoo>
+
+    <!--  Tree View  -->
+    <record model="ir.ui.view" id="course_list_view">
+        <field name="name">course.list</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <tree string="Course list">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  Form View  -->
+    <record id="course_form_view" model="ir.ui.view">
+        <field name="name">course.form</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <!-- <field name="description"/>-->
+                        <!-- <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>-->
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="About">
+                            This is an example of notebooks
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Search function-->
+    <record id="course_search_view" model="ir.ui.view">
+        <field name="name">course.search</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <search string="Search Course">
+                <field name="name"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
     <!--  window action  -->
     <!--   an action opening a view or a set of views -->
     <record id="course_list_action" model="ir.actions.act_window">
