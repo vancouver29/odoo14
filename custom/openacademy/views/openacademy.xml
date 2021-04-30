@@ -2,6 +2,8 @@
 
 <odoo>
 
+    <!--  ################ Course ########################  -->
+
     <!--  Tree View  -->
     <record model="ir.ui.view" id="course_list_view">
         <field name="name">course.list</field>
@@ -9,7 +11,7 @@
         <field name="arch" type="xml">
             <tree string="Course list">
                 <field name="name"/>
-                <field name="description"/>
+                <field name="responsible_id"/>
             </tree>
         </field>
     </record>
@@ -23,6 +25,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="responsible_id" />
                         <!-- <field name="description"/>-->
                         <!-- <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>-->
                     </group>
@@ -30,8 +33,13 @@
                         <page string="Description">
                             <field name="description"/>
                         </page>
-                        <page string="About">
-                            This is an example of notebooks
+                        <page string="Sessions">
+                            <field name="sessions_ids">
+                                <tree string="Registered Sessions">
+                                    <field name="name"/>
+                                    <field name="instructor_id"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -83,4 +91,64 @@
               parent="openacademy_menu"
               action="course_list_action"
               sequence="10"/>
+
+
+
+    <!--  ################ Session ########################  -->
+    <!--  Session tree view  -->
+    <record model="ir.ui.view" id="session_tree_view">
+        <field name="name">session.tree</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <tree string="Session Tree">
+                <field name="name"/>
+                <field name="course_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <!--  Session Form View  -->
+    <record id="session_form_view" model="ir.ui.view">
+        <field name="name">session.form</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <form string="Session Form">
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="course_id" />
+                            <field name="name"/>
+                            <field name="instructor_id" />
+                        </group>
+                        <group string="Schedule">
+                            <field name="start_date"/>
+                            <field name="duration"/>
+                            <field name="seats"/>
+                        </group>
+                    </group>
+                    <label for="attendee_ids" />
+                    <field name="attendee_ids" widget="many2many_tags" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--  window action  -->
+    <!--  an action opening a view or a set of views -->
+    <record id="session_list_action" model="ir.actions.act_window">
+        <field name="name">Sessions</field>
+        <!--        <field name="type">ir.actions.act_window</field>-->
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="session_menu"
+              name="Sessions"
+              parent="openacademy_menu"
+              action="session_list_action"
+              sequence="10"/>
+
 </odoo>
