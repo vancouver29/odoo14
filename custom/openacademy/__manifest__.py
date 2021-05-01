@@ -54,6 +54,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/openacademy.xml',
+        'views/partner.xml',
         'demo/demo.xml'
     ],
     # only loaded in demonstration mode
