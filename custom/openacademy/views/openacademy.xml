@@ -55,10 +55,10 @@
             <search string="Search Course">
                 <field name="name"/>
                 <field name="description"/>
-                <filter name="my_courses" string="My Courses" domain="[('responsible_id'), '=', uid]" />
+<!--                <filter name="my_courses" string="My Courses" domain="[('responsible_id'), '=', uid]" />-->
                 <group string="Group By">
                     <filter name="by_responsible" string="Responsible"
-                    context="{'group_by': 'responsible_id'}"/>
+                            context="{'group_by': 'responsible_id'}"/>
                 </group>
             </search>
         </field>
@@ -127,6 +127,18 @@
         </field>
     </record>
 
+    <!--  Graph View  -->
+    <record model="ir.ui.view" id="session_graph_view">
+        <field name="name">session.graph</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <graph string="Participations by Courses">
+                <field name="course_id" />
+                <field name="attendee_count" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
 
 
     <!--  Session Form View  -->
@@ -164,7 +176,7 @@
         <field name="name">Sessions</field>
         <!--        <field name="type">ir.actions.act_window</field>-->
         <field name="res_model">openacademy.session</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
     </record>
 
     <menuitem id="session_menu"
