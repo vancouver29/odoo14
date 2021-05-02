@@ -9,7 +9,7 @@
         <field name="name">course.list</field>
         <field name="model">openacademy.course</field>
         <field name="arch" type="xml">
-            <tree string="Course list">
+            <tree string="Course list" default_order="name desc">
                 <field name="name"/>
                 <field name="responsible_id"/>
             </tree>
@@ -100,9 +100,11 @@
         <field name="name">session.tree</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <tree string="Session Tree">
+<!--            <tree string="Session Tree">-->
+            <tree string="Session Tree" decoration-bf="duration&lt;5" decoration-it="duration&gt;15" editable="top">
                 <field name="name"/>
                 <field name="course_id"/>
+                <field name="duration" invisible="1" />
                 <field name="taken_seats" widget="progressbar"/>
             </tree>
         </field>
